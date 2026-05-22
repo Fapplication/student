@@ -13,6 +13,8 @@ document.getElementById("loginEmail").value
 const password =
 document.getElementById("loginPassword").value
 
+try{
+
 const response = await fetch(
 "YOUR_WEB_APP_URL",
 {
@@ -33,7 +35,9 @@ password:password
 
 const result = await response.json()
 
-if(result.status == "success"){
+console.log(result)
+
+if(result.status === "success"){
 
 localStorage.setItem(
 "student",
@@ -45,6 +49,14 @@ window.location.href = "dashboard.html"
 }else{
 
 alert("Invalid Email or Password")
+
+}
+
+}catch(error){
+
+console.log(error)
+
+alert("Login Error")
 
 }
 
