@@ -1,30 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
 <h2>Student Dashboard</h2>
 
 <div id="studentInfo"></div>
 
-<h3>Result Table</h3>
+<h3 class="table-title">
+Result Table
+</h3>
 
 <div class="table-container">
 
 <table>
 
+<thead>
+
 <tr>
+
 <th>Mid</th>
 <th>Test</th>
 <th>Assignment</th>
 <th>Final</th>
 <th>Total</th>
 <th>Grade</th>
+
 </tr>
 
+</thead>
+
+<tbody>
+
 <tr>
+
 <td id="mid"></td>
 <td id="test"></td>
 <td id="assignment"></td>
 <td id="final"></td>
 <td id="total"></td>
 <td id="grade"></td>
+
 </tr>
+
+</tbody>
 
 </table>
 
@@ -44,3 +79,13 @@ Submit Complaint
 <button onclick="logout()">
 Logout
 </button>
+
+</div>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>
