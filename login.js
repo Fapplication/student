@@ -1,134 +1,40 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
+const loginForm = document.getElementById("loginForm")
 
-body{
-background:linear-gradient(135deg,#4facfe,#00f2fe);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:15px;
-}
+loginForm.addEventListener("submit", async (e)=>{
 
-.container{
-width:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-}
+e.preventDefault()
 
-.card{
-background:white;
-width:100%;
-max-width:420px;
-padding:35px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-}
+const email = document.getElementById("loginEmail").value
 
-h2{
-text-align:center;
-margin-bottom:25px;
-font-size:32px;
-color:#222;
-}
+const password = document.getElementById("loginPassword").value
 
-form{
-width:100%;
-}
+const response = await fetch("https://script.google.com/macros/s/AKfycbw4ogBvGCINM25cXPdxjnbobI1wEskVjtTVi4b_S2stwt6mNhYujuP_KMYfC2CoS5Z5/exec",{
 
-input{
-width:100%;
-padding:14px;
-margin-bottom:18px;
-border:1px solid #ccc;
-border-radius:10px;
-font-size:16px;
-outline:none;
-transition:0.3s;
-}
+method:"POST",
 
-input:focus{
-border-color:#007bff;
-box-shadow:0 0 5px rgba(0,123,255,0.3);
-}
+body:JSON.stringify({
+action:"login",
+email:email,
+password:password
+})
 
-button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:10px;
-background:#007bff;
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.3s;
-}
+})
 
-button:hover{
-background:#0056b3;
-}
+const result = await response.json()
 
-p{
-text-align:center;
-margin-top:18px;
-font-size:15px;
-}
+if(result.status == "success"){
 
-a{
-text-decoration:none;
-color:#007bff;
-font-weight:bold;
-}
+localStorage.setItem(
+"student",
+JSON.stringify(result.student)
+)
 
-textarea{
-width:100%;
-padding:14px;
-border:1px solid #ccc;
-border-radius:10px;
-margin-bottom:15px;
-resize:none;
-font-size:16px;
-}
+window.location.href = "dashboard.html"
 
-@media screen and (max-width:768px){
+}else{
 
-.card{
-max-width:95%;
-padding:25px;
-}
-
-h2{
-font-size:28px;
-}
+alert("Invalid Email or Password")
 
 }
 
-@media screen and (max-width:480px){
-
-body{
-padding:10px;
-}
-
-.card{
-padding:20px;
-border-radius:15px;
-}
-
-h2{
-font-size:24px;
-margin-bottom:20px;
-}
-
-input,
-button,
-textarea{
-font-size:15px;
-padding:12px;
-}
-
-}
+})
